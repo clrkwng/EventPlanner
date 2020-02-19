@@ -6,10 +6,11 @@ token = secret()
 tm_client = ticketpy.ApiClient(token)
 pp = pprint.PrettyPrinter(indent=4)
 
-def tm_api():
-    # dictionary keys of argument are the fields we care about
-    argument = {'city': 'Austin', 'startDateTime': '2014-03-31T19:15:00Z',
-    'keyword': 'Sports', 'radius': '50'}
+def tm_api(*args):
+    # dictionary keys of argument are the fields we care about, startDateTime format: '2014-03-31T19:15:00Z'
+    print(args)
+    argument = {'location': args[0], 'startDateTime': args[1],
+    'category': args[2], 'radius': args[3]}
 
     # do something like this...
     # argument["city"] =
@@ -35,4 +36,4 @@ def tm_api():
                 pp.pprint(dict)
                 list_of_events.append(dict)
 
-tm_api()
+    return list_of_events
